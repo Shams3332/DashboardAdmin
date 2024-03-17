@@ -1,0 +1,29 @@
+
+.sidebar-container {
+  height: 100vh; /* Set the height to cover the entire viewport */
+  margin: 0; /* Remove any margins */
+  padding: 0; /* Remove any padding */
+  display: flex; /* Use flexbox for layout */
+}
+
+.sidebar {
+  background-color: #343a40; /* Set background color */
+  width: 250px;
+  cursor: pointer;/* Set sidebar width */
+}
+
+.sidebar-content {
+  padding: 20px; /* Add padding for content */
+}
+
+.user-panel .info a {
+  color: #fff; /* Set text color to white */
+}
+
+.nav-sidebar .nav-link {
+  color: #fff; /* Set text color to white */
+}
+
+.nav-sidebar .nav-link:hover {
+  background-color: #495057; /* Set background color on hover */
+}
