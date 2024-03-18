@@ -1,0 +1,89 @@
+<div class="container">
+  <h3 class="title text-center fw-bold mb-3 mt-4">All Books</h3>
+
+  @if(bookJsonData.length !== 0) {
+  <table class="table table-striped">
+    <thead class="thead-dark">
+      <tr>
+        <th scope="col">Code</th>
+        <th scope="col">Book Title</th>
+        <th scope="col">Description</th>
+        <th scope="col">Price</th>
+        <th scope="col">Discount</th>
+        <th scope="col">Author</th>
+        <th scope="col">Image</th>
+        <th scope="col">PDF</th>
+        <th scope="col">Category</th>
+        <th scope="col">Update</th>
+        <th scope="col">Delete</th>
+      </tr>
+    </thead>
+    <tbody>
+      @for(book of bookJsonData; track book._id) {
+      <tr>
+        <td>{{(book._id).slice(0,7)}}</td>
+        <td>{{book.bookTitle}}</td>
+        <td>{{book.bookDescription}}</td>
+        <td>${{book.bookPrice}}</td>
+        <td class=" text-danger ">${{book.discount}}</td>
+        <td>{{book.Author}}</td>
+        <td><img src="{{book.bookImage}}" class="img-thumbnail" alt="Book Image" style="max-height: 100px;"></td>
+        <td><a href="{{book.bookPdf.url}}" target="_blank">View PDF</a></td>
+        <td>{{book.category}}</td>
+        <td><button class="btn btn-primary btn-sm">Update</button></td>
+        <td><button class="btn btn-danger btn-sm" (click)="deletebook(book._id)">Delete</button></td>
+      </tr>
+      }
+    </tbody>
+  </table>
+  }
+</div>
+
+
+
+<!--
+<div class="container">
+  <h3 class="title text-center fw-bold mb-3 mt-4 " >All Books </h3>
+
+  @if(bookJsonData.length !==0){
+    <table class="table ">
+      <thead class="thead-dark">
+        <tr>
+          <th scope="col">Code</th>
+          <th scope="col">bookTitle</th>
+          <th scope="col">bookDescription</th>
+          <th scope="col">bookPrice</th>
+          <th scope="col">discount</th>
+          <th scope="col">Author</th>
+          <th scope="col"> bookImage</th>
+          <th scope="col">bookPdf</th>
+          <th scope="col">category</th>
+          <th scope="col">Update</th>
+          <th scope="col">Delete</th>
+        </tr>
+      </thead>
+      <tbody>
+
+        @for(book of bookJsonData ; track book._id){
+          <tr>
+            <th scope="row">{{(book._id).slice(0,7)}}</th>
+            <td>{{book.bookTitle}}</td>
+            <td>{{book.bookDescription}}</td>
+            <td>{{book.bookPrice}}</td>
+            <td>{{book.discount}}</td>
+            <td>{{book.Author}}</td>
+            <td><img   src="{{book.bookImage}}" class="img-thumbnail" alt="" ></td>
+            <td>{{book.bookPdf}}</td>
+            <td>{{book.category}}</td>
+            <td><button class="btn btn-primary btn-sm " >Update</button></td>
+            <td><button class="btn btn-danger btn-sm" >Delete</button></td>
+          </tr>
+        }
+        @empty {
+          <h3 class="text-center mt-3 mb-3 fw-bold" >No books Available</h3>
+        }
+      </tbody>
+    </table>
+  }
+
+  </div> -->
