@@ -17,6 +17,9 @@
       <nav>
         <ul class="nav nav-pills nav-sidebar flex-column" data-widget="treeview" role="menu" data-accordion="false">
           <li class="nav-item">
+            <a class="nav-link text-white" routerLink="/chart">chart</a>
+          </li>
+          <li class="nav-item">
             <a class="nav-link text-white" routerLink="/user">Users</a>
           </li>
           <li class="nav-item">
@@ -31,6 +34,10 @@
           </li>
           <li class="nav-item">
             <a class="nav-link text-white" routerLink="/category">category</a>
+          </li>
+
+          <li>
+            <a class="nav-link text-white" (click)="logout()" style=" background-color: #900c3f; color: white;">LOG OUT</a>
           </li>
         </ul>
       </nav>

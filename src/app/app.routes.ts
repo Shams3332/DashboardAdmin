@@ -5,6 +5,8 @@ import { ReviewComponent } from './components/review/review.component';
 import { BookComponent } from './components/book/book.component';
 import { CopounComponent } from './components/copoun/copoun.component';
 import { CategoryComponent } from './components/category/category.component';
+import { ChartComponent } from './components/chart/chart.component';
+import { LoginComponent } from './components/login/login.component';
 
 export const routes: Routes = [
   { path: 'user', component: UserComponent},
@@ -12,6 +14,11 @@ export const routes: Routes = [
   { path: 'book', component: BookComponent},
   { path: 'copoun', component: CopounComponent },
   { path: 'category', component: CategoryComponent },
+  { path: 'chart', component: ChartComponent },
+
+  { path: 'login', component: LoginComponent },
+
+  { path: '', redirectTo: 'login', pathMatch: 'full' },
 ];
 
 @NgModule({
