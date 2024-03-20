@@ -7,6 +7,7 @@ import { CopounComponent } from './components/copoun/copoun.component';
 import { CategoryComponent } from './components/category/category.component';
 import { ChartComponent } from './components/chart/chart.component';
 import { LoginComponent } from './components/login/login.component';
+import { OrderComponent } from './components/order/order.component';
 
 export const routes: Routes = [
   { path: 'user', component: UserComponent},
@@ -17,6 +18,7 @@ export const routes: Routes = [
   { path: 'chart', component: ChartComponent },
 
   { path: 'login', component: LoginComponent },
+  { path: 'order', component: OrderComponent },
 
   { path: '', redirectTo: 'login', pathMatch: 'full' },
 ];
