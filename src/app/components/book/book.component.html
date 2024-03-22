@@ -1,89 +1,184 @@
 <div class="container">
+  <div class="card mb-4">
+    <div class="card-header" style="
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        background-color:#a8896c;
+        color: white;
+        font-weight: bold;
+        font-size: 20px;
+      ">
+     
+      {{ updateDone ? "Update Book" : "Add New Book" }} 
+    </div>
+  
+    <div class="card-body">
+      <form className="mt-5" #addBookForm="ngForm" (ngSubmit)="updateDone ? updateBook() : addBook()">
+        <div class="form-group row mb-2">
+          <label for="bookTitle" class="col-md-2 col-sm-4 col-form-label">
+            Title:</label>
+          <div class="col-md-10 col-sm-8">
+            <input type="text" class="form-control w-50 text-center m-auto mb-1" id="bookTitle" name="bookTitle" placeholder="Enter Book Title"
+              required minlength="3" [(ngModel)]="books.newBookTitle" #bookTitleInput="ngModel" [ngClass]="{
+                'is-invalid':
+                  (bookTitleInput.touched || bookTitleInput.dirty) &&
+                  bookTitleInput.invalid
+              }" />
+            <span class="invalid-feedback">
+              <span *ngIf="bookTitleInput.errors?.['required']">Please enter Book Title</span>
+              <span *ngIf="bookTitleInput.errors?.['minlength']">Book Title must be longer than 3 characters</span>
+            </span>
+          </div>
+        </div>
+        
+        <div class="form-group row mb-2">
+          <label for="bookDescription" class="col-md-2 col-sm-4 col-form-label">
+            Book Description:</label>
+          <div class="col-md-10 col-sm-8">
+            <input type="text" class="form-control" id="bookDescription" name="bookDescription" min="1"
+              placeholder="Enter book Description " required [(ngModel)]="books.newBookDescription" #bookDescription="ngModel"
+              [ngClass]="{
+                'is-invalid':
+                  (bookDescription.touched || bookDescription.dirty) &&
+                  bookDescription.invalid
+              }" />
+            <span class="invalid-feedback">
+              <span *ngIf="bookDescription.errors?.['required']">Please enter Book Description</span>
+              <span *ngIf="bookDescription.errors?.['min']">Book Pages must be more than 0</span>
+            </span>
+          </div>
+        </div>
+        <div class="form-group row mb-2">
+          <label for="bookPrice" class="col-md-2 col-sm-4 col-form-label">
+            Enter Price:</label>
+          <div class="col-md-10 col-sm-8">
+            <input type="number" class="form-control" id="bookPrice" name="bookPrice"
+              placeholder="Enter Book price" [(ngModel)]="books.newBookPrice"
+              #bookPrice="ngModel" [ngClass]="{
+                'is-invalid':
+                  (bookPrice.touched || bookPrice.dirty) &&
+                  bookPrice.invalid
+              }" />
+            <span class="invalid-feedback">
+              <span *ngIf="bookPrice.errors?.['required']">Please enter book Price</span>
+            </span>
+          </div>
+        </div>
+        <div class="form-group row mb-2">
+          <label for="price" class="col-md-2 col-sm-4 col-form-label">
+          Enter Discount:</label>
+          <div class="col-md-10 col-sm-8">
+            <input type="number" class="form-control" id="discount" name="discount" min="1" placeholder="Enter Book Discount "
+              required [(ngModel)]="books.newDiscount" #discount="ngModel" [ngClass]="{
+                'is-invalid':
+                  (discount.touched || discount.dirty) && discount.invalid
+              }" />
+            <span class="invalid-feedback">
+              <span *ngIf="discount.errors?.['required']">Please enter Discount </span>
+            </span>
+          </div>
+        </div>
+        <!-- Book Image -->
+        <div class="form-group row mb-2">
+          <label for="bookImage" class="col-md-2 col-sm-4 col-form-label">
+            Cover Image:</label>
+          <div class="col-md-10 col-sm-8">
+            <input type="file" class="form-control" id="bookImage" placeholder="Upload An Image" name="bookImage" required (change)="onFileSelected($event)" />
+  
+            <!-- <input type="file" class="form-control" id="bookImage" placeholder="Upload An Image" name="bookImage" required
+              (change)="onFileSelected($event)" /> -->
+          </div>
+        </div>
+        <div class="form-group row mb-2">
+          <label for="category" class="col-md-2 col-sm-4 col-form-label">Category:</label>
+          <div class="col-md-10 col-sm-8">
+            <input type="text" class="form-control" id="category" name="category" placeholder="Enter A Book Category"
+              required [(ngModel)]="books.newCategory" #category="ngModel" [ngClass]="{
+                'is-invalid':
+                  (category.touched || category.dirty) &&
+                  category.invalid
+              }" />
+            <span class="invalid-feedback">
+              <!-- <span *ngIf="category.errors?.['required']">Please enter Book Category</span> -->
+            </span>
+          </div>
+        </div>
+        <!-- Book PDF -->
+        <div class="form-group row mb-2">
+          <label for="bookPdf" class="col-md-2 col-sm-4 col-form-label">
+            Upload PDF:</label>
+          <div class="col-md-10 col-sm-8">
+            <input type="file" class="form-control" id="bookPdf" placeholder="Upload PDF" name="bookPdf" required (change)="onPdfSelected($event)" />
+  
+            <!-- <input type="file" class="form-control" id="bookPdf" placeholder="Upload PDF" name="bookPdf" required
+              (change)="onPdfSelected($event)" /> -->
+          </div>
+        </div>
+  
+        <!-- Book Author -->
+        <div class="form-group row mb-2">
+          <label for="Author" class="col-md-2 col-sm-4 col-form-label">Author:</label>
+          <div class="col-md-10 col-sm-8">
+            <input type="text" class="form-control" id="Author" name="Author" placeholder="Enter Author Name" required
+              [(ngModel)]="books.newAuthor" #Author="ngModel" [ngClass]="{
+                'is-invalid':
+                  (Author.touched || Author.dirty) &&
+                  Author.invalid
+              }" />
+            <span class="invalid-feedback">
+              <span *ngIf="Author.errors?.['required']">Please enter Book Author</span>
+            </span>
+          </div>
+        </div>
+     
+        <button type="submit" class="btn btn-secondary btn-sm" [disabled]="addBookForm.invalid || !imageSelected">
+          Submit
+        </button>
+        <!-- <button type="submit" class="btn btn-success" [disabled]="!addBookForm.invalid || !imageSelected">
+          {{ updateDone ? "Update Book" : "Add Book" }}
+        </button> -->
+        
+        
+      </form>
+    </div>
+  </div>
+
+  <!-- Second Table (All Books) -->
   <h3 class="title text-center fw-bold mb-3 mt-4">All Books</h3>
-
   @if(bookJsonData.length !== 0) {
-  <table class="table table-striped">
-    <thead class="thead-dark">
-      <tr>
-        <th scope="col">Code</th>
-        <th scope="col">Book Title</th>
-        <th scope="col">Description</th>
-        <th scope="col">Price</th>
-        <th scope="col">Discount</th>
-        <th scope="col">Author</th>
-        <th scope="col">Image</th>
-        <th scope="col">PDF</th>
-        <th scope="col">Category</th>
-        <th scope="col">Update</th>
-        <th scope="col">Delete</th>
-      </tr>
-    </thead>
-    <tbody>
-      @for(book of bookJsonData; track book._id) {
-      <tr>
-        <td>{{(book._id).slice(0,7)}}</td>
-        <td>{{book.bookTitle}}</td>
-        <td>{{book.bookDescription}}</td>
-        <td>${{book.bookPrice}}</td>
-        <td class=" text-danger ">${{book.discount}}</td>
-        <td>{{book.Author}}</td>
-        <td><img src="{{book.bookImage}}" class="img-thumbnail" alt="Book Image" style="max-height: 100px;"></td>
-        <td><a href="{{book.bookPdf.url}}" target="_blank">View PDF</a></td>
-        <td>{{book.category}}</td>
-        <td><button class="btn btn-primary btn-sm">Update</button></td>
-        <td><button class="btn btn-danger btn-sm" (click)="deletebook(book._id)">Delete</button></td>
-      </tr>
-      }
-    </tbody>
-  </table>
-  }
-</div>
-
-
-
-<!--
-<div class="container">
-  <h3 class="title text-center fw-bold mb-3 mt-4 " >All Books </h3>
-
-  @if(bookJsonData.length !==0){
-    <table class="table ">
+    <table class="table table-striped custom-table"> <!-- Added custom-table class -->
       <thead class="thead-dark">
         <tr>
           <th scope="col">Code</th>
-          <th scope="col">bookTitle</th>
-          <th scope="col">bookDescription</th>
-          <th scope="col">bookPrice</th>
-          <th scope="col">discount</th>
+          <th scope="col">Book Title</th>
+          <th scope="col">Description</th>
+          <th scope="col">Price</th>
+          <th scope="col">Discount</th>
           <th scope="col">Author</th>
-          <th scope="col"> bookImage</th>
-          <th scope="col">bookPdf</th>
-          <th scope="col">category</th>
+          <th scope="col">PDF</th>
+          <th scope="col">Category</th>
           <th scope="col">Update</th>
           <th scope="col">Delete</th>
         </tr>
       </thead>
       <tbody>
-
-        @for(book of bookJsonData ; track book._id){
+        @for(book of bookJsonData; track book._id) {
           <tr>
-            <th scope="row">{{(book._id).slice(0,7)}}</th>
+            <td>{{(book._id).slice(0,7)}}</td>
             <td>{{book.bookTitle}}</td>
             <td>{{book.bookDescription}}</td>
-            <td>{{book.bookPrice}}</td>
-            <td>{{book.discount}}</td>
+            <td>${{book.bookPrice}}</td>
+            <td class=" text-danger ">%{{book.discount}}</td>
             <td>{{book.Author}}</td>
-            <td><img   src="{{book.bookImage}}" class="img-thumbnail" alt="" ></td>
-            <td>{{book.bookPdf}}</td>
+            <td><a href="{{book.bookPdf.url}}" target="_blank">View PDF</a></td>
             <td>{{book.category}}</td>
-            <td><button class="btn btn-primary btn-sm " >Update</button></td>
-            <td><button class="btn btn-danger btn-sm" >Delete</button></td>
+            <td><button class="btn btn-secondary btn-sm" (click)="updateBook(book._id)" >Update</button></td>
+            <td><button class="btn btn-secondary btn-sm" (click)="deletebook(book._id)">Delete</button></td>
           </tr>
-        }
-        @empty {
-          <h3 class="text-center mt-3 mb-3 fw-bold" >No books Available</h3>
         }
       </tbody>
     </table>
   }
 
-  </div> -->
+</div>

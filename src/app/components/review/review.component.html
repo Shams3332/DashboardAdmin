@@ -1,7 +1,7 @@
 <div class="container mt-5">
-  <h3 class="title text-center fw-bold mb-3" style="padding-bottom: 10px;">All review</h3>
-  <table class="table table-striped">
-    <thead class="thead-dark">
+  <h3 class="title text-center fw-bold mb-3">All Reviews</h3>
+  <table class="table table-striped custom-table">
+    <thead class="custom-thead">
       <tr>
         <th scope="col">Book Title</th>
         <th scope="col">Comment</th>
@@ -16,9 +16,8 @@
         <td>{{ review.comment }}</td>
         <td>{{ review.rating }}</td>
         <td>{{ review.user }}</td>
-        <td><button class="btn btn-danger btn-sm" (click)="handleDelete(review._id)">Delete</button></td>
+        <td><button class="btn btn-danger btn-sm custom-button" (click)="handleDelete(review._id)">Delete</button></td>
       </tr>
     </tbody>
   </table>
 </div>
-

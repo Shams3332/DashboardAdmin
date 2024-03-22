@@ -1,5 +1,5 @@
 import { Injectable } from '@angular/core';
-import { HttpClient } from '@angular/common/http';
+import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { Observable } from 'rxjs';
 import { Ibook } from '../models/ibook';
 
@@ -8,8 +8,13 @@ import { Ibook } from '../models/ibook';
 })
 export class BookService {
   private apiUrl = 'http://localhost:4000/book';
-
-  constructor(private http: HttpClient) {}
+  Header={}
+  constructor(private http: HttpClient) {
+    this.Header={
+      headers:new HttpHeaders({
+        'Content-Type':'application/json'
+      })}
+  }
 
   getAllbook(): Observable<any> {
     return this.http.get(`http://localhost:4000/book/AllBook`);
@@ -20,18 +25,24 @@ export class BookService {
   }
 
   // Add New Book
-  addBook(formData: FormData): Observable<any> {
-    return this.http.post(`${this.apiUrl}/add`, formData);
+  addBook(book: any): Observable<any> {
+    return this.http.post(`http://localhost:4000/book/add`, book);
   }
-
   // Get Book by ID
   getBookById(bookId: string): Observable<Ibook> {
     return this.http.get<Ibook>(`${this.apiUrl}/${bookId}`);
   }
-
-  // Update Book
-  updateBook(bookId: string, book: Ibook): Observable<Ibook> {
-    return this.http.put<Ibook>(`${this.apiUrl}/${bookId}`, book);
+  updateBook(book: any): Observable<any> {
+    return this.http.put(`http://localhost:4000/book/${book._id}`, book);
   }
+  
+  // Update Book
+  // updateBook(bookId: any): Observable<any> {
+  //   return this.http.put(`http://localhost:4000/book/${bookId}`, JSON.stringify(bookId));
+  // }
+  
+  // updateBook(bookId: string, book: Ibook): Observable<Ibook> {
+  //   return this.http.put<Ibook>(`${this.apiUrl}/${bookId}`, book);
+  // }
 }
 
