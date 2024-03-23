@@ -10,7 +10,7 @@
           <th scope="col">Coupon Code</th>
           <th scope="col">Coupon Value</th>
           <th scope="col">Expire Date</th>
-          <th scope="col">Update</th>
+          <!-- <th scope="col">Update</th> -->
           <th scope="col">Delete</th>
         </tr>
       </thead>
@@ -21,7 +21,7 @@
             <td>{{copoun.couponCode}}</td>
             <td>{{copoun.couponValue}}</td>
             <td style="width: 108px;">{{(copoun.expireIn).slice(0,10)}}</td>
-            <td><button class="btn btn-primary btn-sm" (click)="updateButton(copoun._id)">Update</button></td>
+            <!-- <td><button class="btn btn-primary btn-sm" (click)="updateButton(copoun._id)">Update</button></td> -->
             <td><button class="btn btn-danger btn-sm" (click)="deleteCopoun(copoun._id)" >Delete</button></td>
           </tr>
         }
