@@ -17,7 +17,7 @@ export class BookService {
   }
 
   getAllbook(): Observable<any> {
-    return this.http.get(`http://localhost:4000/book/AllBook`);
+    return this.http.get(`http://localhost:4000/book/AllBook?limit=50&page=1`);
   }
 
   deletebook(bookId: string): Observable<any> {
@@ -35,12 +35,12 @@ export class BookService {
   updateBook(book: any): Observable<any> {
     return this.http.put(`http://localhost:4000/book/${book._id}`, book);
   }
-  
+
   // Update Book
   // updateBook(bookId: any): Observable<any> {
   //   return this.http.put(`http://localhost:4000/book/${bookId}`, JSON.stringify(bookId));
   // }
-  
+
   // updateBook(bookId: string, book: Ibook): Observable<Ibook> {
   //   return this.http.put<Ibook>(`${this.apiUrl}/${bookId}`, book);
   // }

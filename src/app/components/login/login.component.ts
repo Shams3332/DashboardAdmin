@@ -43,7 +43,7 @@ import { CommonModule, NgClass } from '@angular/common';
     }
 
     login() {
-      axios.post("http://localhost:4000/auth/login", this.userLogin.value)
+      axios.post("http://localhost:4000/auth/admin", this.userLogin.value)
         .then((res) => {
           console.log(res);
           if (res.data && res.data.status === "success") {
