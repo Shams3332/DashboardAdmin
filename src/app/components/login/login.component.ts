@@ -50,7 +50,7 @@ import { CommonModule, NgClass } from '@angular/common';
             // Assuming email and token are returned in the response
             const { email, token } = res.data;
             this.userAuthService.userLoggedIn(email, token);
-            this.router.navigate(['chart']);
+            this.router.navigate(['user']);
           } else {
             // Handle unexpected response status
             console.error("Unexpected response:", res);

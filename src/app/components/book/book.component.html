@@ -159,8 +159,8 @@
           <th scope="col">Price</th>
           <th scope="col">Discount</th>
           <th scope="col">Author</th>
-          <th scope="col">PDF</th>
-          <!-- <th scope="col">Category</th> -->
+          <!-- <th scope="col">PDF</th> -->
+          <th scope="col">Category</th>
           <th scope="col">Update</th>
           <th scope="col">Delete</th>
         </tr>
@@ -174,10 +174,10 @@
             <td>${{book.bookPrice}}</td>
             <td class=" text-danger ">%{{book.discount}}</td>
             <td>{{book.Author}}</td>
-            <td><a href="{{book.bookPdf.url}}" target="_blank">View PDF</a></td>
-            <!-- <td>{{book.category}}</td> -->
+            <!-- <td><a href="{{book.bookPdf.url}}" target="_blank">View PDF</a></td> -->
+            <td>{{book.category}}</td>
             <td><button class="btn btn-secondary btn-sm" (click)="updateBook(book._id)" >Update</button></td>
-            <td><button class="btn btn-secondary btn-sm" (click)="deletebook(book._id)">Delete</button></td>
+            <td><button class="btn btn-danger btn-sm" (click)="deletebook(book._id)">Delete</button></td>
           </tr>
         }
       </tbody>

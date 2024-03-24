@@ -8,10 +8,9 @@ import axios from 'axios';
   standalone: true,
   imports: [FormsModule, CommonModule],
   templateUrl: './order.component.html',
-  styleUrl: './order.component.css'
+  styleUrl: './order.component.css',
 })
 export class OrderComponent implements OnInit {
-
   myCarts: any[] = [];
 
   constructor() {}
@@ -21,19 +20,17 @@ export class OrderComponent implements OnInit {
   }
 
   fetchCarts(): void {
-    axios.get("http://localhost:4000/cart/all")
-      .then(response => {
-        if (response.data && response.data.status === "success") {
+    axios
+      .get('http://localhost:4000/cart/all')
+      .then((response) => {
+        if (response.data && response.data.status === 'success') {
           this.myCarts = response.data.cart;
         } else {
-          console.error("Failed to fetch carts:", response.data);
+          console.error('Failed to fetch carts:', response.data);
         }
       })
-      .catch(error => {
-        console.error("Error fetching carts:", error);
+      .catch((error) => {
+        console.error('Error fetching carts:', error);
       });
   }
-
-
-
 }

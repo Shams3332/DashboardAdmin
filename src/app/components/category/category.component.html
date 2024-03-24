@@ -7,7 +7,7 @@
     </div>
 
     <div class="form-group mt-3">
-      <input type="file" class="form-control input-box w-50 text-center m-auto mb-1" id="categoryImage" name="categoryImage" accept="image/*" (change)="onFileSelected($event)" required>
+      <input type="file" class="form-control input-box w-50 text-center m-auto " id="categoryImage" name="categoryImage" accept="image/*" (change)="onFileSelected($event)" required>
     </div>
     <div>
       <button type="submit" class="btn btn-secondary d-block m-auto w-25 mt-3 mb-5">Add Category</button>
@@ -32,13 +32,13 @@
           </td>
           <td class="text-left align-middle">
             <!-- Add your actions buttons here -->
-            <button class="btn btn-danger mt-2 table-btns" (click)="handleDelete(category._id)">Delete</button>
+            <button class="btn btn-danger mt-2 " (click)="handleDelete(category._id)">Delete</button>
           </td>
         </tr>
       </tbody>
     </table>
   </div>
 
-  
+
 
 </div>
